@@ -1,0 +1,55 @@
+bazel_dep(name = "rules_kotlin", version = "1.9.0", repo_name = "io_bazel_rules_kotlin")
+
+bazel_dep(name = "rules_jvm_external", version = "6.5")
+
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+
+maven.install(
+    name = "maven",
+    artifacts = [
+        "com.google.code.gson:gson:2.11.0",
+        "org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.9.0",
+        "org.ow2.asm:asm:9.6",
+        "com.github.ajalt.clikt:clikt-jvm:4.4.0",
+        "com.google.protobuf:protobuf-java:3.18.2",
+        "com.google.protobuf:protobuf-java-util:3.18.2",
+        "jakarta.inject:jakarta.inject-api:2.0.1",
+        "org.jetbrains.kotlin:kotlin-stdlib:1.9.23",
+        "org.jetbrains.kotlin:kotlin-stdlib-common:1.9.23",
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.9.23",
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.23",
+        "io.kotest:kotest-assertions-core-jvm:5.6.0",
+        "io.kotest:kotest-framework-engine-jvm:5.6.0",
+        "io.kotest:kotest-framework-api-jvm:5.6.0",
+        "io.kotest:kotest-common-jvm:5.6.0",
+        "io.kotest:kotest-runner-junit5-jvm:5.6.0",
+        "io.kotest:kotest-runner-junit4-jvm:5.6.0",
+        "org.junit.platform:junit-platform-launcher:1.9.2",
+        "io.micronaut:micronaut-http:4.0.0",
+        "io.micronaut:micronaut-inject-java:4.0.0",
+        "io.micronaut:micronaut-inject:4.0.0",
+        "io.micronaut:micronaut-inject-kotlin:4.0.0",
+        "io.micronaut:micronaut-aop:4.0.0",
+        "io.micronaut.validation:micronaut-validation:4.0.0",
+        "io.micronaut:micronaut-runtime:4.0.0",
+        "io.micronaut:micronaut-management:4.0.0",
+        "io.micronaut:micronaut-http-server-netty:4.0.0", 
+        "ch.qos.logback:logback-classic:1.4.11",
+        "org.slf4j:slf4j-api:2.0.9",
+        "io.micronaut:micronaut-json-core:4.0.0",
+        "io.micronaut:micronaut-jackson-core:4.0.0",
+        "com.fasterxml.jackson.core:jackson-databind:2.15.2",
+        "com.fasterxml.jackson.core:jackson-core:2.15.2",
+        "com.fasterxml.jackson.core:jackson-annotations:2.15.2",     
+        "io.micronaut:micronaut-jackson-databind:4.0.0",
+    ],
+    fetch_sources = True,
+    lock_file = "//:maven_install.json",
+    repositories = [
+        "https://maven.google.com",
+        "https://repo1.maven.org/maven2",
+        "https://mvnrepository.com/artifact",
+    ],
+)
+
+use_repo(maven, "maven")
